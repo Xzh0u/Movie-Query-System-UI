@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import React from "react";
+import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import Home from "./containers/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Helmet>
+        <title>Movie Query System -- QueryX</title>
+      </Helmet>
+      <Switch>
+        <Route path="/home" component={Home} />
+        <Route path="/404">
+          <div>404</div>
+        </Route>
+        <Redirect to="/home" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
