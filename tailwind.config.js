@@ -3,7 +3,7 @@ module.exports = {
   purge: [],
   target: "relaxed",
   prefix: "ml-",
-  important: "#movie-query-system-queryx",
+  important: true,
   separator: ":",
   theme: {
     screens: {
