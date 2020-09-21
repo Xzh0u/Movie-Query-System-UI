@@ -16,9 +16,9 @@ const StyledTextField = styled(TextField)`
 
 const Search: React.FC = () => {
   return (
-    <div className="ml-w-48">
+    <div className="w-111 px-8">
       <Autocomplete
-        className="ml-text-left"
+        className="text-left"
         id="searchBar"
         autoHighlight={true}
         clearOnEscape={true}
@@ -27,7 +27,7 @@ const Search: React.FC = () => {
         renderInput={(params) => (
           <StyledTextField
             {...params}
-            className="ml-w-11-12 ml-my-2 ml-text-base"
+            className="w-full text-base"
             label="Search input"
             margin="none"
             variant="outlined"

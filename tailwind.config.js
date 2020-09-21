@@ -2,7 +2,6 @@
 module.exports = {
   purge: [],
   target: "relaxed",
-  prefix: "ml-",
   important: true,
   separator: ":",
   theme: {
@@ -20,7 +19,7 @@ module.exports = {
       white: "#fff",
 
       gray: {
-        100: "#f5f5f5",
+        100: "#f7f7f7",
         200: "#edf2f7",
         300: "#e2e8f0",
         400: "#cbd5e0",
@@ -141,7 +140,8 @@ module.exports = {
       6: "24px",
       7: "28px",
       8: "32px",
-      10: "40x",
+      9: "36px",
+      10: "40px",
       12: "48px",
       14: "56px",
       16: "64px",
@@ -154,6 +154,12 @@ module.exports = {
       48: "192px",
       56: "224px",
       64: "256px",
+      72: "280px",
+      80: "500px",
+      88: "600px",
+      99: "717px",
+      111: "910px",
+      120: "1050px",
     },
     backgroundColor: (theme) => theme("colors"),
     backgroundOpacity: (theme) => theme("opacity"),
@@ -242,6 +248,7 @@ module.exports = {
     fontFamily: {
       sans: [
         "Varela Round",
+        "Delius Swash Caps",
         "Source Sans Pro",
         "system-ui",
         "-apple-system",
@@ -274,7 +281,7 @@ module.exports = {
       base: "16px",
       lg: "18px",
       xl: "20px",
-      "2xl": "24",
+      "2xl": "36px",
       "3xl": "48px",
       "4xl": "64px",
       "5xl": "80px",
@@ -301,7 +308,10 @@ module.exports = {
       0: "0",
       10: "10px",
       25: "25px",
+      150: "100px",
       "1/2": "50%",
+      "1/4": "25%",
+      "1/5": "21%",
       auto: "auto",
       1: "100%",
     },
@@ -461,7 +471,7 @@ module.exports = {
       30: "30",
       40: "40",
       50: "50",
-      9999: "99999999",
+      9999: "9999",
     },
     gap: (theme) => theme("spacing"),
     gridTemplateColumns: {

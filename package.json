@@ -16,9 +16,11 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.3",
     "babel-plugin-root-import": "^6.5.0",
+    "customize-cra": "^1.0.0",
     "gatsby-plugin-react-helmet": "^3.3.11",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-app-rewired": "^2.1.6",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
@@ -28,13 +30,10 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
-    "prestart": "npm run build:tailwind",
-    "prebuild": "npm run build:tailwind",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": "react-app"

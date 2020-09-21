@@ -4,13 +4,13 @@ import { Avatar } from "@material-ui/core";
 
 const Header: React.FC = () => {
   return (
-    <div className="ml-shadow ml-flex ml-items-center ml-bg-white ml-w-full ml-z-9999 ml-px-4 ml-fixed">
-      <div className="ml-text-5xl ml-font-chalkboard ml-text-blue-500">
+    <div className="shadow flex items-center bg-white w-full z-9999 fixed">
+      <div className="tracking-wider text-2xl px-16 py-2 font-sans text-blue-500 font-black">
         QueryX
       </div>
       <Search />
       <Avatar
-        className="ml-m-2 ml-h-7 ml-w-7"
+        className="m-2 h-9 w-9 absolute right-25"
         alt="round"
         src="https://i.loli.net/2020/06/01/2uHvPFcdwAb3tRi.png"
       />
