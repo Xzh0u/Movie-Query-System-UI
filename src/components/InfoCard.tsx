@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { CardMedia, Card } from '@material-ui/core';
 
 const StyledCard = styled(Card)`
-
+    padding: 1em;
+    border: 1px dashed transparent;
+    background: linear-gradient(white,white) padding-box,
+    repeating-linear-gradient(-45deg,#ccc 0, #ccc 0.25em,white 0,white 0.75em);
 `;
 
 
@@ -13,7 +16,7 @@ const InfoCard: React.FC = () => {
         tabIndex={0}
         raised
         variant="outlined"
-        className="w-80 h-36 ml-10 mb-2 static focus:outline-none focus:shadow-outline bg-gray-100">
+        className="w-111 h-36 ml-12 mb-6 mb-2 static focus:outline-none focus:shadow-outline">
         <CardMedia
           component="img"
         //   alt="ppt"

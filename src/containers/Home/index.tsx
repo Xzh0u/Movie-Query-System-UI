@@ -11,9 +11,8 @@ const Home: React.FC = () => {
             <SideBar /> 
             <div>
                 <div className="w-full h-24 top-0 left-0"/>
-                <div className="grid grid-cols-2 gap-4 overflow-y-auto">
+                <div className="flex flex-col overflow-y-auto">
                     <InfoCard />
-                    <InfoCard /> 
                     <InfoCard /> 
                     <InfoCard />  
                 </div>

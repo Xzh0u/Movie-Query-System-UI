@@ -1,12 +1,17 @@
 import React from "react";
 import Search from "../../../components/Search";
-import { Avatar } from "@material-ui/core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilm } from '@fortawesome/free-solid-svg-icons';
+import { IconButton, Avatar } from '@material-ui/core';
 
 const Header: React.FC = () => {
   return (
     <div className="shadow flex items-center bg-white w-full z-9999 fixed">
-      <div className="tracking-wider text-2xl px-16 py-2 font-sans text-blue-500 font-black">
-        QueryX
+      <IconButton size="small" className="ml-16">
+        <FontAwesomeIcon icon={faFilm} color="gray" size="lg" />
+      </IconButton>
+      <div className="tracking-wide text-lg px-2 mr-10 py-4 font-sans text-blue-500 font-black">
+        Movie Awesome
       </div>
       <Search />
       <Avatar
