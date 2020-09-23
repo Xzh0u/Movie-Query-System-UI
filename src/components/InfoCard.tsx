@@ -16,7 +16,7 @@ const InfoCard: React.FC = () => {
         tabIndex={0}
         raised
         variant="outlined"
-        className="w-111 h-36 ml-12 mb-6 mb-2 static focus:outline-none focus:shadow-outline">
+        className="w-111 h-36 ml-10 mb-6 mb-2 static">
         <CardMedia
           component="img"
         //   alt="ppt"

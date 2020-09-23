@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import InfoCard from "./../../components/InfoCard";
-
+import BackTop from "./../../components/BackTop";
 const Home: React.FC = () => {
 
     return (<div >
@@ -14,11 +14,13 @@ const Home: React.FC = () => {
                 <div className="flex flex-col overflow-y-auto">
                     <InfoCard />
                     <InfoCard /> 
+                    <InfoCard /> 
+                    <InfoCard /> 
                     <InfoCard />  
                 </div>
             </div>
         </div>
-        
+        <BackTop />
         
         </div>);
 };
