@@ -11,7 +11,12 @@ const Home: React.FC = () => {
             <SideBar /> 
             <div>
                 <div className="w-full h-24 top-0 left-0"/>
-                <div className="flex flex-col overflow-y-auto">
+                <div className="flex flex-col ml-76 overflow-y-auto">
+                    <InfoCard />
+                    <InfoCard /> 
+                    <InfoCard /> 
+                    <InfoCard /> 
+                    <InfoCard />  
                     <InfoCard />
                     <InfoCard /> 
                     <InfoCard /> 

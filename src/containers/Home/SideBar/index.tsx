@@ -35,8 +35,8 @@ const SideBar: React.FC = () => {
     };
 
     return (
-      <div className="flex w-76 h-111 bg-gray-100 z-10 left-0 overflow-y-auto">
-        <div className="mb-64 my-20 mx-4 w-full h-full">
+      <div className="flex w-76 h-full z-10 left-0 fixed">
+        <div className="mb-64 my-20 mx-4 w-full h-full overflow-y-auto">
           <div className="ml-14 mt-6 text-gray-500 font-lg font-mono font-semibold">
             <StyledFontAwesomeIcon className="mr-3" icon={faFilter} color="gray" size="lg" />
             Filter
@@ -57,7 +57,7 @@ const SideBar: React.FC = () => {
             ))}
           </TextField>  
           <Tooltip title="sort the item" placement="bottom">
-            <IconButton className="my-7 ml-4" size="small">
+            <IconButton className="my-7 ml-4 focus:outline-none" size="small">
               <FontAwesomeIcon className="m-1" icon={faSortNumericUp} size="lg" />
             </IconButton>
           </Tooltip>
@@ -82,7 +82,7 @@ const SideBar: React.FC = () => {
           size="small"
           />
           <Tooltip title="comfirm" placement="bottom">
-          <IconButton className="mt-4 ml-4" size="small">
+          <IconButton className="mt-4 ml-4 focus:outline-none" size="small">
             <FontAwesomeIcon className="m-1" icon={faCheckCircle} color="gray" size="lg" />
           </IconButton>
           </Tooltip>

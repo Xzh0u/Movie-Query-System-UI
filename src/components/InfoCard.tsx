@@ -13,10 +13,9 @@ const StyledCard = styled(Card)`
 const InfoCard: React.FC = () => {
   return (
       <StyledCard
-        tabIndex={0}
         raised
         variant="outlined"
-        className="w-111 h-36 ml-10 mb-6 mb-2 static">
+        className="w-111 h-36 ml-8 mb-6 mb-2 static">
         <CardMedia
           component="img"
         //   alt="ppt"

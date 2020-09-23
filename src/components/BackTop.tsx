@@ -36,7 +36,7 @@ const ScrollTop: React.FC<Props> = ({children}) => {
 const BackTop: React.FC = () => {
     return (
         <ScrollTop >
-            <Fab className="absolute bottom-25 right-10" color="primary" size="small" aria-label="scroll back to top">
+            <Fab tabIndex={-1} className="absolute bottom-25 right-10 focus:outline-none" color="primary" size="small" aria-label="scroll back to top">
                 <KeyboardArrowUpIcon />
             </Fab>
         </ScrollTop>
