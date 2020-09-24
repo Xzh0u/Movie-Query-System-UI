@@ -9,25 +9,47 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: #bfbfbf;
 `;
 
-const currencies = [
+const sortItems = [
   {
-    value: 'USD',
-    label: '$',
+    value: 'Date',
+    label: 'Date',
   },
   {
-    value: 'EUR',
-    label: '€',
+    value: 'Rank',
+    label: 'Rank',
   },
   {
-    value: 'BTC',
-    label: '฿',
+    value: 'Score',
+    label: 'Score',
   },
   {
-    value: 'JPY',
-    label: '¥',
+    value: 'Clicks',
+    label: 'Clicks',
   },
 ];
 
+const Tags = [
+  {
+    value: 'Country',
+    label: 'Country',
+  },
+  {
+    value: 'Language',
+    label: 'Language',
+  },
+  {
+    value: 'Director',
+    label: 'Director',
+  },
+  {
+    value: 'Major character',
+    label: 'Major character',
+  },
+  {
+    value: 'Type',
+    label: 'Type',
+  },
+];
 const SideBar: React.FC = () => {
     const [currency, setCurrency] = React.useState('EUR');
     const handleChange = (event:any) => {
@@ -50,7 +72,7 @@ const SideBar: React.FC = () => {
             value={currency}
             onChange={handleChange}
           >
-            {currencies.map((option) => (
+            {sortItems.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
@@ -69,7 +91,7 @@ const SideBar: React.FC = () => {
             value={currency}
             onChange={handleChange}
           >
-            {currencies.map((option) => (
+            {Tags.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
@@ -77,9 +99,10 @@ const SideBar: React.FC = () => {
           </TextField>
           <TextField
           className="ml-14 w-44 mt-2"
-          label="Enter tag value"
+          label="Enter input"
           id="mui-theme-provider-outlined-input"
           size="small"
+          helperText="Please enter value of the tag"
           />
           <Tooltip title="comfirm" placement="bottom">
           <IconButton className="mt-4 ml-4 focus:outline-none" size="small">

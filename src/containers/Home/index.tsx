@@ -5,28 +5,30 @@ import InfoCard from "./../../components/InfoCard";
 import BackTop from "./../../components/BackTop";
 const Home: React.FC = () => {
 
-    return (<div >
-        <Header /> 
-        <div className="flex">
-            <SideBar /> 
-            <div>
-                <div className="w-full h-24 top-0 left-0"/>
-                <div className="flex flex-col ml-76 overflow-y-auto">
-                    <InfoCard />
-                    <InfoCard /> 
-                    <InfoCard /> 
-                    <InfoCard /> 
-                    <InfoCard />  
-                    <InfoCard />
-                    <InfoCard /> 
-                    <InfoCard /> 
-                    <InfoCard /> 
-                    <InfoCard />  
+    return (
+        <div >
+            <Header /> 
+            <div className="flex">
+                <SideBar /> 
+                <div>
+                    <div className="w-full h-24 top-0 left-0"/>
+                    <div id="back-to-top-anchor" className="flex flex-col ml-76 overflow-y-auto">
+                        <InfoCard />
+                        <InfoCard /> 
+                        <InfoCard /> 
+                        <InfoCard /> 
+                        <InfoCard />  
+                        <InfoCard />
+                        <InfoCard /> 
+                        <InfoCard /> 
+                        <InfoCard /> 
+                        <InfoCard />  
+                        <BackTop />
+                    </div>
                 </div>
             </div>
-        </div>
-        <BackTop />
-        
+            
+            
         </div>);
 };
 
