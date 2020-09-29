@@ -19,6 +19,7 @@
     "@types/react-helmet": "^6.1.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.3",
+    "axios": "^0.20.0",
     "babel-plugin-root-import": "^6.5.0",
     "customize-cra": "^1.0.0",
     "gatsby-plugin-react-helmet": "^3.3.11",
