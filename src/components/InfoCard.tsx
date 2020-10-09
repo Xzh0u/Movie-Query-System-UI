@@ -16,6 +16,10 @@ export interface InfoCardProps {
   information: any;
 }
 
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  color: #f7b500;
+`;
+
 const InfoCard: React.FC = () => {
   return (
       <StyledCard
@@ -28,8 +32,8 @@ const InfoCard: React.FC = () => {
           alt="movie-picture"
           image="https://i.loli.net/2020/09/23/4dWZ5sMbOrXxzGB.jpg"
         />
-      <div className="font-sm w-88">
-        <p >导演：弗兰克·德拉邦特</p>
+      <div className="font-sm w-88 text-gray-600 ">
+        <p>导演：弗兰克·德拉邦特</p>
         <p>主演：蒂姆·罗宾斯 / 摩根·弗里曼 / 鲍勃·冈顿 / …</p>
         <p>制片国家/地区: 美国</p>
         <p>语言: 英语</p>
@@ -37,7 +41,7 @@ const InfoCard: React.FC = () => {
         <p>类型：剧情 / 犯罪 / 名著改编</p>
       </div>
         <div className="flex relative top-0">
-          <FontAwesomeIcon className="ml-16" icon={faStar} color="yellow" size="lg" />
+          <StyledFontAwesomeIcon className="ml-16" icon={faStar} color="yellow" size="lg" />
         <div className="pl-2 text-yellow-400">9.7</div>
       </div>
       </StyledCard>
