@@ -1,10 +1,10 @@
-import React, { createContext, useReducer, Dispatch, RefObject } from 'react';
+/* eslint-disable no-debugger */
+import React, { createContext, useReducer, Dispatch} from 'react';
 
 
 const initialMovieContext = {
   // rootRef: (undefined as unknown) as RefObject<HTMLDivElement>,
-  movie: {
-      data: [{
+  movie: [{
         country: '',
         date: '',
         director: '',
@@ -17,29 +17,35 @@ const initialMovieContext = {
         title: [],
         type: [],
         // adaptation: boolean,
-    }]
-  } as MovieType,
+    }] as MovieType[],
   action: 'all',
+  type: '',
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
 };
 
 export const movieContext = createContext(initialMovieContext);
 
 const reducer = (state: MovieContextType, action: ActionType) => {
+  console.log(action)
   switch (action.type) {
-    case 'setMovies':
-      return {
+    case 'setMovies':{
+      const tmp = {
         ...state,
-        movie: {
-          ...state.movie,
-          movie: action.payload.movie,
-        },
+        movie: action.payload.movie,
       };
+      console.log(tmp)
+      return tmp;
+    }
     case 'setAction':
       return {
         ...state,
         action: action.payload.action,
       };
+    case 'setActionType':
+      return {
+        ...state,
+        type: action.payload.type,
+      };  
     default:
       return state;
   }
@@ -56,11 +62,12 @@ const MovieProvider: React.FC = ({ children }) => {
 
 type ActionType =
   | { type: 'test'; payload: { test: string } }
-  | { type: 'setMovies'; payload: { movie: MovieType } }
-  | { type: 'setAction'; payload: { action: string } };
+  | { type: 'setMovies'; payload: { movie: MovieType[] } }
+  | { type: 'setAction'; payload: { action: string } }
+  | { type: 'setActionType'; payload: { type: string } };
+
 
 export interface MovieType {
-  data: Array<{
     country: string;
     date: string;
     director:string;
@@ -75,7 +82,6 @@ export interface MovieType {
     title: Array<string>;
     type: Array<string>;
     // adaptation: boolean;
-  }>;
 }
 
 

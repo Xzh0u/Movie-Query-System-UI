@@ -1,29 +1,13 @@
 import axios from 'axios';
-interface Movie {
-  data: Array<{
-    country: string;
-    date: string;
-    director:string;
-    introduction: string;
-    language:string;
-    link: {
-      [K: string]: string;
-    };
-    majors: Array<string>;
-    rank: number;
-    score: number;
-    title: Array<string>;
-    type: Array<string>;
-    // adaptation: boolean;
-  }>;
-}
+import {MovieType} from "./../context/MovieProvider"
+ 
 export async function getAllMovies() {
   try {
-    const response = await axios.get<Movie>(`http://127.0.0.1:5000/video/get_movies/all_movies`)
+    const response = await axios.get<MovieType[]>(`http://127.0.0.1:5000/get_movies/all_movies`)
 
-    const { data } = response.data;
+    const data = response.data;
 
-    return { data };
+    return data;
   } catch (e) {
     alert(e);
     console.log(e);

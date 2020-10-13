@@ -3,7 +3,7 @@ import React from "react";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Home from "./containers/Home";
-
+import MovieProvider from './context/MovieProvider';
 function App() {
   return (
     <BrowserRouter>
@@ -11,7 +11,11 @@ function App() {
         <title>Movie Query System -- QueryX</title>
       </Helmet>
       <Switch>
-        <Route path="/home" component={Home} />
+        <Route path="/home" component={() => (
+          <MovieProvider>
+            <Home />
+          </MovieProvider>
+        )} />
         <Route path="/404">
           <div>404</div>
         </Route>

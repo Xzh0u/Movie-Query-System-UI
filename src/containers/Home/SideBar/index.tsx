@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortNumericUp, faFilter, faCheckCircle, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { Divider, TextField, IconButton, MenuItem, Tooltip } from '@material-ui/core';
 import styled from 'styled-components'
-
+import { movieContext } from "context/MovieProvider";
+import { getSortedMovies} from "utils/getSortedMovies";
+import { getTagedMovies} from "utils/getTagedMovies";
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: #bfbfbf;
@@ -42,8 +44,8 @@ const Tags = [
     label: 'Director',
   },
   {
-    value: 'Major character',
-    label: 'Major character',
+    value: 'Majors',
+    label: 'Majors',
   },
   {
     value: 'Type',
@@ -51,9 +53,16 @@ const Tags = [
   },
 ];
 const SideBar: React.FC = () => {
-    const [currency, setCurrency] = React.useState('EUR');
+    const [type, setType] = React.useState<string>('');
+    const [content, setContent] = React.useState<string>('');
+    const { dispatch } = React.useContext(movieContext);
+
     const handleChange = (event:any) => {
-      setCurrency(event.target.value);
+      setType(event.target.value);
+    };
+
+    const handleContentChange = (event:any) => {
+      setContent(event.target.value);
     };
 
     return (
@@ -66,10 +75,10 @@ const SideBar: React.FC = () => {
           <Divider className="mt-4 mb-4"/>
           <TextField
             className="ml-14 mt-3 w-44"
-            id="standard-select-currency"
+            id="standard-select-type"
             select
-            label="Select the item to sort"
-            value={currency}
+            helperText="Select the item to sort"
+            value={type}
             onChange={handleChange}
           >
             {sortItems.map((option) => (
@@ -79,16 +88,21 @@ const SideBar: React.FC = () => {
             ))}
           </TextField>  
           <Tooltip title="sort the item" placement="bottom">
-            <IconButton className="my-7 ml-4 focus:outline-none" size="small">
+            <IconButton className="my-7 ml-4 focus:outline-none" size="small" onClick={ async () => {
+              // dispatch({ type: 'setAction', payload: {action: 'sort'} });
+              // dispatch({ type: 'setActionType', payload: {type: type} });
+              const movies = await getSortedMovies(type);
+              dispatch({ type: 'setMovies', payload: {movie: movies} })
+            }}>
               <FontAwesomeIcon className="m-1" icon={faSortNumericUp} size="lg" />
             </IconButton>
           </Tooltip>
           <TextField
             className="ml-14 mt-3 w-44"
-            id="standard-select-currency"
+            id="standard-select-type"
             select
-            label="Select the tag to display"
-            value={currency}
+            helperText="Select the tag to display"
+            value={type}
             onChange={handleChange}
           >
             {Tags.map((option) => (
@@ -99,13 +113,19 @@ const SideBar: React.FC = () => {
           </TextField>
           <TextField
           className="ml-14 w-44 mt-2"
-          label="Enter input"
           id="mui-theme-provider-outlined-input"
           size="small"
+          value={content}
+          onChange={handleContentChange}
           helperText="Please enter value of the tag"
           />
           <Tooltip title="comfirm" placement="bottom">
-          <IconButton className="mt-4 ml-4 focus:outline-none" size="small">
+          <IconButton className="mt-4 ml-4 focus:outline-none" size="small" onClick={
+            async () => {
+              const movies = await getTagedMovies(type, content);
+              dispatch({ type: 'setMovies', payload: {movie: movies} })
+            }
+          }>
             <FontAwesomeIcon className="m-1" icon={faCheckCircle} color="gray" size="lg" />
           </IconButton>
           </Tooltip>

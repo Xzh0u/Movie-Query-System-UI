@@ -1,9 +1,10 @@
-import React, { memo } from 'react';
+/* eslint-disable no-debugger */
+import React, { memo, useEffect } from 'react';
 import styled from 'styled-components';
 import { CardMedia, Card } from '@material-ui/core';
 import { faStar} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+// import { MovieType } from "../context/MovieProvider";
 const StyledCard = styled(Card)`
     padding: 1em;
     border: 1px dashed transparent;
@@ -12,7 +13,7 @@ const StyledCard = styled(Card)`
     font-size: 0.85rem;
 `;
 export interface InfoCardProps {
-  moviePic: string;
+  // moviePic: string;
   information: any;
 }
 
@@ -20,7 +21,13 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: #f7b500;
 `;
 
-const InfoCard: React.FC = () => {
+const InfoCard: React.FC<InfoCardProps> = ({information}) => {
+
+  useEffect(() => {
+    console.log(information)
+    console.log("information")
+  }, [information]);
+
   return (
       <StyledCard
         raised
@@ -33,16 +40,16 @@ const InfoCard: React.FC = () => {
           image="https://i.loli.net/2020/09/23/4dWZ5sMbOrXxzGB.jpg"
         />
       <div className="font-sm w-88 text-gray-600 ">
-        <p>导演：弗兰克·德拉邦特</p>
-        <p>主演：蒂姆·罗宾斯 / 摩根·弗里曼 / 鲍勃·冈顿 / …</p>
-        <p>制片国家/地区: 美国</p>
-        <p>语言: 英语</p>
-        <p>上映日期: 1994-09-10</p>
-        <p>类型：剧情 / 犯罪 / 名著改编</p>
+          <p>导演：{information[2]}</p>
+          <p>主演：{information[6]}</p>
+          <p>制片国家/地区: {information[0]}</p>
+          <p>语言: {information[4]}</p>
+          <p>上映日期: {information[1]}</p>
+          <p>类型：{information[10]}</p>
       </div>
         <div className="flex relative top-0">
           <StyledFontAwesomeIcon className="ml-16" icon={faStar} color="yellow" size="lg" />
-        <div className="pl-2 text-yellow-400">9.7</div>
+        <div className="pl-2 text-yellow-400">{information[8]}</div>
       </div>
       </StyledCard>
   );
