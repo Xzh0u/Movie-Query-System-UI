@@ -13,42 +13,42 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 
 const sortItems = [
   {
-    value: 'Date',
+    value: 'date',
     label: 'Date',
   },
   {
-    value: 'Rank',
+    value: 'rank',
     label: 'Rank',
   },
   {
-    value: 'Score',
+    value: 'score',
     label: 'Score',
   },
   {
-    value: 'Clicks',
+    value: 'clicks',
     label: 'Clicks',
   },
 ];
 
 const Tags = [
   {
-    value: 'Country',
+    value: 'country',
     label: 'Country',
   },
   {
-    value: 'Language',
+    value: 'language',
     label: 'Language',
   },
   {
-    value: 'Director',
+    value: 'director',
     label: 'Director',
   },
   {
-    value: 'Majors',
+    value: 'majors',
     label: 'Majors',
   },
   {
-    value: 'Type',
+    value: 'type',
     label: 'Type',
   },
 ];
@@ -93,6 +93,7 @@ const SideBar: React.FC = () => {
               // dispatch({ type: 'setActionType', payload: {type: type} });
               const movies = await getSortedMovies(type);
               dispatch({ type: 'setMovies', payload: {movie: movies} })
+              dispatch({ type: 'setActionType', payload: {type: ''} });
             }}>
               <FontAwesomeIcon className="m-1" icon={faSortNumericUp} size="lg" />
             </IconButton>

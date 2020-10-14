@@ -5,7 +5,7 @@ export async function getTypedMovies(word: string) {
   try {
     const response = await axios.get<MovieType[]>(`http://127.0.0.1:5000/get_movies/typed_movies?word=${word}`)
 
-    const { data } = response;
+    const data = response.data;
 
     return data;
   } catch (e) {
