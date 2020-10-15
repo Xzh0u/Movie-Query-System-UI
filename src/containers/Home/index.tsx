@@ -26,7 +26,6 @@ const Home: React.FC = () => {
         console.log("movies")
         dispatch({ type: 'setMovies', payload: {movie: movies} })
     }
-    debugger;
     console.log(movie)
     return (
         <div >

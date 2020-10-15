@@ -93,7 +93,7 @@ const SideBar: React.FC = () => {
               // dispatch({ type: 'setActionType', payload: {type: type} });
               const movies = await getSortedMovies(type);
               dispatch({ type: 'setMovies', payload: {movie: movies} })
-              dispatch({ type: 'setActionType', payload: {type: ''} });
+              setContent('')
             }}>
               <FontAwesomeIcon className="m-1" icon={faSortNumericUp} size="lg" />
             </IconButton>
@@ -125,6 +125,7 @@ const SideBar: React.FC = () => {
             async () => {
               const movies = await getTagedMovies(type, content);
               dispatch({ type: 'setMovies', payload: {movie: movies} })
+              dispatch({ type: 'setActionType', payload: {type: ''} })
             }
           }>
             <FontAwesomeIcon className="m-1" icon={faCheckCircle} color="gray" size="lg" />

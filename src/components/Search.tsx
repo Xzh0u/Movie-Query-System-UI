@@ -1,7 +1,11 @@
-import React from "react";
+/* eslint-disable array-callback-return */
+/* eslint-disable no-debugger */
+import React, { useContext, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import styled from "styled-components";
+import {movieContext} from "./../context/MovieProvider";
+import {getAllMovies} from "./../utils/getAllMovies";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-root {
@@ -15,6 +19,24 @@ const StyledTextField = styled(TextField)`
 `;
 
 const Search: React.FC = () => {
+  const { movie, dispatch } = useContext(movieContext);
+
+  useEffect(() => {
+    console.log(movie)
+}, [movie]);
+
+  const searchMovie = (title: string) => {
+    movie.map((data, idx) => {
+      if (title === data.title[0]) {
+        dispatch({
+          type: 'setMovies',
+          payload: { movie: [movie[idx]] },
+        })
+        console.log("set!");
+      }
+      console.log("!!!");
+    })
+  }
   return (
     <div className="w-111 px-8">
       <Autocomplete
@@ -23,7 +45,16 @@ const Search: React.FC = () => {
         autoHighlight={true}
         clearOnEscape={true}
         autoComplete={true}
-        options={[1, 2]}
+        onChange={async (_, value) => {
+          if (value) {
+            searchMovie(value.toString()); 
+          } else {
+            const movies = await getAllMovies();
+            dispatch({ type: 'setMovies', payload: {movie: movies} })
+          }
+
+        }}
+        options={movie.map(item => item.title[0])}
         renderInput={(params) => (
           <StyledTextField
             {...params}
