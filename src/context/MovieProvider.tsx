@@ -14,9 +14,11 @@ const initialMovieContext = {
         majors: [],
         rank: 0,
         score: 0,
-        title: [],
+        title: '',
         type: [],
-        // adaptation: boolean,
+        adaptation: false,
+        image_url:'',
+        runtime:'',
     }] as MovieType[],
   action: 'all',
   type: '',
@@ -72,6 +74,8 @@ export interface MovieType {
     date: string;
     director:string;
     introduction: string;
+    image_url: string;
+    runtime: string;
     language:string;
     link: {
       [K: string]: string;
@@ -79,9 +83,9 @@ export interface MovieType {
     majors: Array<string>;
     rank: number;
     score: number;
-    title: Array<string>;
+    title: string;
     type: Array<string>;
-    // adaptation: boolean;
+    adaptation: boolean;
 }
 
 

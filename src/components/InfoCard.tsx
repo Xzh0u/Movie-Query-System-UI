@@ -37,13 +37,14 @@ const InfoCard: React.FC<InfoCardProps> = ({information}) => {
           className="pr-10 w-30"
           component="img"
           alt="movie-picture"
-          image="https://i.loli.net/2020/09/23/4dWZ5sMbOrXxzGB.jpg"
+          // image="https://i.loli.net/2020/09/23/4dWZ5sMbOrXxzGB.jpg"
         />
-      <div className="font-sm w-88 text-gray-600 ">
+      <div className="font-sm w-80 text-gray-600 ">
+          <p className="font-bold">{information[9]}</p>
           <p>导演：{information[2]}</p>
-          <p>主演：{information[6]}</p>
+          <p className="truncate ...">主演：{information[6].map((x: any) => <span className="mx-1">{x}</span>)}</p>
           <p>制片国家/地区: {information[0]}</p>
-          <p>语言: {information[4]}</p>
+          {/* <p>语言: {information[4]}</p> */}
           <p>上映日期: {information[1]}</p>
           <p>类型：{information[10]}</p>
       </div>

@@ -27,7 +27,7 @@ const Search: React.FC = () => {
 
   const searchMovie = (title: string) => {
     movie.map((data, idx) => {
-      if (title === data.title[0]) {
+      if (title === data.title) {
         dispatch({
           type: 'setMovies',
           payload: { movie: [movie[idx]] },
@@ -54,7 +54,7 @@ const Search: React.FC = () => {
           }
 
         }}
-        options={movie.map(item => item.title[0])}
+        options={movie.map(item => item.title)}
         renderInput={(params) => (
           <StyledTextField
             {...params}
