@@ -1,10 +1,11 @@
 /* eslint-disable no-debugger */
-import React, { memo, useEffect } from 'react';
+/* eslint-disable array-callback-return */
+import React, { memo, useContext } from 'react';
 import styled from 'styled-components';
 import { CardMedia, Card } from '@material-ui/core';
 import { faStar} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { MovieType } from "../context/MovieProvider";
+import { movieContext } from "../context/MovieProvider";
 const StyledCard = styled(Card)`
     padding: 1em;
     border: 1px dashed transparent;
@@ -22,11 +23,19 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 const InfoCard: React.FC<InfoCardProps> = ({information}) => {
-
-  useEffect(() => {
-    console.log(information)
-    console.log("information")
-  }, [information]);
+  const { imgs } = useContext(movieContext);
+  console.log(imgs)
+  console.log(information)
+  debugger;
+  const getImages = () => {
+    let urls = '';
+    imgs.map((images) => {
+      if (images.pic_names === information[11].split('/').slice(-1)[0]) {
+        urls = images.url;
+      }
+    })
+    return urls;
+  }
 
   return (
       <StyledCard
@@ -37,7 +46,7 @@ const InfoCard: React.FC<InfoCardProps> = ({information}) => {
           className="pr-10 w-30"
           component="img"
           alt="movie-picture"
-          // image="https://i.loli.net/2020/09/23/4dWZ5sMbOrXxzGB.jpg"
+          image={getImages()}
         />
       <div className="font-sm w-80 text-gray-600 ">
           <p className="font-bold">{information[9]}</p>

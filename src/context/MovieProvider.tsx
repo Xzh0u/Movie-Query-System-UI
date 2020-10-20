@@ -20,6 +20,7 @@ const initialMovieContext = {
         image_url:'',
         runtime:'',
     }] as MovieType[],
+  imgs: [] as ImageType[],
   action: 'all',
   type: '',
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
@@ -28,7 +29,6 @@ const initialMovieContext = {
 export const movieContext = createContext(initialMovieContext);
 
 const reducer = (state: MovieContextType, action: ActionType) => {
-  console.log(action)
   switch (action.type) {
     case 'setMovies':{
       const tmp = {
@@ -47,7 +47,12 @@ const reducer = (state: MovieContextType, action: ActionType) => {
       return {
         ...state,
         type: action.payload.type,
-      };  
+      };
+    case 'setImages':
+      return {
+        ...state,
+        imgs: action.payload.imgs,
+      }; 
     default:
       return state;
   }
@@ -66,7 +71,8 @@ type ActionType =
   | { type: 'test'; payload: { test: string } }
   | { type: 'setMovies'; payload: { movie: MovieType[] } }
   | { type: 'setAction'; payload: { action: string } }
-  | { type: 'setActionType'; payload: { type: string } };
+  | { type: 'setActionType'; payload: { type: string } }
+  | { type: 'setImages'; payload: { imgs: ImageType[] } };
 
 
 export interface MovieType {
@@ -88,6 +94,10 @@ export interface MovieType {
     adaptation: boolean;
 }
 
+export interface ImageType {
+  url: string;
+  pic_names: string;
+}
 
 export type MovieContextType = typeof initialMovieContext;
 
