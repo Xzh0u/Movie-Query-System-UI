@@ -26,7 +26,6 @@ const InfoCard: React.FC<InfoCardProps> = ({information}) => {
   const { imgs } = useContext(movieContext);
   console.log(imgs)
   console.log(information)
-  debugger;
   const getImages = () => {
     let urls = '';
     imgs.map((images) => {
