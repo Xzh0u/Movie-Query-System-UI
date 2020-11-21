@@ -1,12 +1,11 @@
 /* eslint-disable no-debugger */
 /* eslint-disable array-callback-return */
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 import { CardMedia, Card } from '@material-ui/core';
 import { faStar} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { movieContext } from "../context/MovieProvider";
-import InfoPanel from "./InfoPanel";
 const StyledCard = styled(Card)`
     padding: 1em;
     border: 1px dashed transparent;
@@ -25,10 +24,7 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 
 const InfoCard: React.FC<InfoCardProps> = ({information}) => {
   const { imgs } = useContext(movieContext);
-  const [open, setOpen] = React.useState(false);
-  console.log(imgs)
-  console.log(information)
-  const getImages = () => {
+  const imageUrls = useMemo(() => {
     let urls = '';
     imgs.map((images) => {
       if (images.pic_names === information[11].split('/').slice(-1)[0]) {
@@ -36,23 +32,21 @@ const InfoCard: React.FC<InfoCardProps> = ({information}) => {
       }
     })
     return urls;
-  }
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+  }, [imgs, information]);
+  
   return (
       <StyledCard
         raised
         variant="outlined"
-        className="w-100 h-36 ml-8 mb-6 mb-2 flex">
-        <InfoPanel openPanel={open}/>
+        className="w-100 h-36 ml-8 mb-6 mb-2 flex"
+        >
         <CardMedia
           className="pr-10 w-30"
           component="img"
           alt="movie-picture"
-          image={getImages()}
+          image={imageUrls}
         />
-      <div className="font-sm w-80 text-gray-600 " onClick={handleClickOpen}>
+      <div className="font-sm w-80 text-gray-600">
           <p className="font-bold">{information[9]}</p>
           <p>导演：{information[2]}</p>
           <p className="truncate ...">主演：{information[6].map((x: any) => <span className="mx-1">{x}</span>)}</p>

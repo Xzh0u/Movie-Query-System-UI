@@ -9,18 +9,24 @@ import Dialog from '@material-ui/core/Dialog';
 // import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
-const InfoPanel: React.FC<any> = (openPanel) => {
-    const [open, setOpen] = React.useState(false);
+type InfoPanelProps = {
+    openPanel: boolean;
+    setOpenPanel: (open: boolean) => void;
+}
+
+const InfoPanel: React.FC<InfoPanelProps> = ({openPanel, setOpenPanel}) => {
     console.log(openPanel)
     // const handleClickOpen = () => {
     //     setOpen(true);
     // };
+
     const handleClose = () => {
-        setOpen(false);
+        setOpenPanel(false);
     };
+
     return (
-        <div >
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+        <div>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={openPanel}>
                 <Typography gutterBottom>
                     Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
                     in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
