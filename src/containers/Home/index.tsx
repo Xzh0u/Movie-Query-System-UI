@@ -7,17 +7,17 @@ import BackTop from "./../../components/BackTop";
 import { movieContext } from "./../../context/MovieProvider";
 import { getAllMovies } from "./../../utils/getAllMovies";
 import { getMovieImages } from "./../../utils/getMovieImages";
-import InfoPanel from "components/InfoPanel";
+import InfoPanel from "components/InfoPanelOld";
 
 const Home: React.FC = () => {
-  const { movie, dispatch } = useContext(movieContext);
+  const { movies, dispatch } = useContext(movieContext);
   const [open, setOpen] = React.useState(false);
 
   const getAllMoviesRequest = useCallback(async () => {
-    const movies = await getAllMovies();
+    const _movies = await getAllMovies();
     const imgs = await getMovieImages();
 
-    dispatch({ type: "setMovies", payload: { movie: movies } });
+    dispatch({ type: "setMovies", payload: { movies: _movies } });
     dispatch({ type: "setImages", payload: { imgs: imgs } });
   }, [dispatch]);
 
@@ -36,40 +36,9 @@ const Home: React.FC = () => {
             id="back-to-top-anchor"
             className="flex flex-col ml-76 overflow-y-auto"
           >
-            {/* <InfoCard />   */}
-            {movie.map(
-              ({
-                country,
-                date,
-                director,
-                introduction,
-                language,
-                link,
-                majors,
-                rank,
-                score,
-                title,
-                type,
-                image_url,
-              }) => (
-                <InfoCard
-                  information={[
-                    country,
-                    date,
-                    director,
-                    introduction,
-                    language,
-                    link,
-                    majors,
-                    rank,
-                    score,
-                    title,
-                    type,
-                    image_url,
-                  ]}
-                />
-              )
-            )}
+            {movies.map((movie) => (
+              <InfoCard movie={movie} />
+            ))}
             <BackTop />
             <InfoPanel openPanel={open} setOpenPanel={setOpen} />
           </div>

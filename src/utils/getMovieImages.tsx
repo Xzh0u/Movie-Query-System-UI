@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 function base64toBlob(base64: string, type: any) {
   // 将base64转为Unicode规则编码
@@ -21,20 +21,19 @@ export async function getMovieImages() {
         imgs: string[];
         pic_name: string[];
       };
-    }>(`http://127.0.0.1:5000/get_movies/images`)
+    }>(`http://127.0.0.1:5000/get_movies/images`);
     const img64 = response.data.image.imgs; //base64 format
     const pic_names = response.data.image.pic_name;
     const imgSrcs = [];
     for (let i = 0, len = img64.length; i < len; i++) {
-      const res = base64toBlob(img64[i], 'image/jpeg'); //blob format
+      const res = base64toBlob(img64[i], "image/jpeg"); //blob format
 
       const imgSrc = window.URL.createObjectURL(res); //url
       imgSrcs.push({ url: imgSrc, pic_names: pic_names[i] });
     }
     return imgSrcs;
   } catch (e) {
-    alert(e);
     console.log(e);
-    throw e;
+    return [];
   }
 }

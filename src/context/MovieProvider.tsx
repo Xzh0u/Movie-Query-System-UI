@@ -1,28 +1,12 @@
 /* eslint-disable no-debugger */
-import React, { createContext, useReducer, Dispatch} from 'react';
-
+import React, { createContext, useReducer, Dispatch } from "react";
 
 const initialMovieContext = {
   // rootRef: (undefined as unknown) as RefObject<HTMLDivElement>,
-  movie: [{
-        country: '',
-        date: '',
-        director: '',
-        introduction: '',
-        language:'',
-        link: {},
-        majors: [],
-        rank: 0,
-        score: 0,
-        title: '',
-        type: [],
-        adaptation: false,
-        image_url:'',
-        runtime:'',
-    }] as MovieType[],
+  movies: [] as MovieType[],
   imgs: [] as ImageType[],
-  action: 'all',
-  type: '',
+  action: "all",
+  type: "",
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
 };
 
@@ -30,29 +14,29 @@ export const movieContext = createContext(initialMovieContext);
 
 const reducer = (state: MovieContextType, action: ActionType) => {
   switch (action.type) {
-    case 'setMovies':{
+    case "setMovies": {
       const tmp = {
         ...state,
-        movie: action.payload.movie,
+        movies: action.payload.movies,
       };
-      console.log(tmp)
+      console.log(tmp);
       return tmp;
     }
-    case 'setAction':
+    case "setAction":
       return {
         ...state,
         action: action.payload.action,
       };
-    case 'setActionType':
+    case "setActionType":
       return {
         ...state,
         type: action.payload.type,
       };
-    case 'setImages':
+    case "setImages":
       return {
         ...state,
         imgs: action.payload.imgs,
-      }; 
+      };
     default:
       return state;
   }
@@ -68,30 +52,29 @@ const MovieProvider: React.FC = ({ children }) => {
 };
 
 type ActionType =
-  | { type: 'test'; payload: { test: string } }
-  | { type: 'setMovies'; payload: { movie: MovieType[] } }
-  | { type: 'setAction'; payload: { action: string } }
-  | { type: 'setActionType'; payload: { type: string } }
-  | { type: 'setImages'; payload: { imgs: ImageType[] } };
-
+  | { type: "test"; payload: { test: string } }
+  | { type: "setMovies"; payload: { movies: MovieType[] } }
+  | { type: "setAction"; payload: { action: string } }
+  | { type: "setActionType"; payload: { type: string } }
+  | { type: "setImages"; payload: { imgs: ImageType[] } };
 
 export interface MovieType {
-    country: string;
-    date: string;
-    director:string;
-    introduction: string;
-    image_url: string;
-    runtime: string;
-    language:string;
-    link: {
-      [K: string]: string;
-    };
-    majors: Array<string>;
-    rank: number;
-    score: number;
-    title: string;
-    type: Array<string>;
-    adaptation: boolean;
+  country: string;
+  date: string;
+  director: string;
+  introduction: string;
+  image_url: string;
+  runtime: string;
+  language: string;
+  link: {
+    [K: string]: string;
+  };
+  majors: Array<string>;
+  rank: number;
+  score: number;
+  title: string;
+  type: Array<string>;
+  adaptation: boolean;
 }
 
 export interface ImageType {

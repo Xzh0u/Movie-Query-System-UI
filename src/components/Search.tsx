@@ -4,9 +4,9 @@ import React, { useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import styled from "styled-components";
-import {movieContext} from "./../context/MovieProvider";
-import {getAllMovies} from "./../utils/getAllMovies";
-import {getMovieImages} from "./../utils/getMovieImages";
+import { movieContext } from "./../context/MovieProvider";
+import { getAllMovies } from "./../utils/getAllMovies";
+import { getMovieImages } from "./../utils/getMovieImages";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-root {
@@ -20,18 +20,18 @@ const StyledTextField = styled(TextField)`
 `;
 
 const Search: React.FC = () => {
-  const { movie, dispatch } = useContext(movieContext);
+  const { movies: movie, dispatch } = useContext(movieContext);
 
   const searchMovie = (title: string) => {
     movie.map((data, idx) => {
       if (title === data.title) {
         dispatch({
-          type: 'setMovies',
-          payload: { movie: [movie[idx]] },
-        })
+          type: "setMovies",
+          payload: { movies: [movie[idx]] },
+        });
       }
-    })
-  }
+    });
+  };
   return (
     <div className="w-111 px-8">
       <Autocomplete
@@ -42,16 +42,15 @@ const Search: React.FC = () => {
         autoComplete={true}
         onChange={async (_, value) => {
           if (value) {
-            searchMovie(value.toString()); 
+            searchMovie(value.toString());
           } else {
             const movies = await getAllMovies();
             const imgs = await getMovieImages();
-            dispatch({ type: 'setMovies', payload: {movie: movies} })
-            dispatch({ type: 'setImages', payload: {imgs} })
+            dispatch({ type: "setMovies", payload: { movies: movies } });
+            dispatch({ type: "setImages", payload: { imgs } });
           }
-
         }}
-        options={movie.map(item => item.title)}
+        options={movie.map((item) => item.title)}
         renderInput={(params) => (
           <StyledTextField
             {...params}

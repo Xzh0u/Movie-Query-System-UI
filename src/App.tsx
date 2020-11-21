@@ -4,7 +4,7 @@ import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 // import Home from "./containers/Home";
 import MovieProvider from "./context/MovieProvider";
-import MovieList from "pages/MovieList";
+import MovieListPage from "pages/MovieList";
 function App() {
   return (
     <BrowserRouter>
@@ -13,18 +13,18 @@ function App() {
       </Helmet>
       <Switch>
         <Route
-          path="/home"
+          path="/list"
           component={() => (
             <MovieProvider>
               {/* <Home /> */}
-              <MovieList />
+              <MovieListPage />
             </MovieProvider>
           )}
         />
         <Route path="/404">
           <div>404</div>
         </Route>
-        <Redirect to="/home" />
+        <Redirect to="/list" />
       </Switch>
     </BrowserRouter>
   );

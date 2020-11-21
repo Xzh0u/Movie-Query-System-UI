@@ -1,12 +1,12 @@
 import React from "react";
 import Search from "../../../components/Search";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilm } from '@fortawesome/free-solid-svg-icons';
-import { Avatar } from '@material-ui/core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilm } from "@fortawesome/free-solid-svg-icons";
+import { Avatar } from "@material-ui/core";
 
 const Header: React.FC = () => {
   return (
-    <div className="shadow flex items-center bg-white w-full z-9999 fixed">
+    <div className="shadow flex items-center bg-white w-full z-9999 fixed top-0">
       <FontAwesomeIcon className="ml-16" icon={faFilm} color="gray" size="lg" />
       <div className="tracking-wide text-lg px-2 mr-10 py-4 font-sans text-blue-500 font-black">
         Movie Awesome
