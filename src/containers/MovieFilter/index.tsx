@@ -12,8 +12,9 @@ const MovieFilter: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const movies = await getMovies(getMoviesParams);
+      const {movies, count} = await getMovies(getMoviesParams);
       dispatch({ type: "setMovies", payload: { movies } });
+      dispatch({ type: "setMovieCount", payload: { count } });
     })();
   }, [getMoviesParams, dispatch]);
 

@@ -37,7 +37,6 @@ const Search: React.FC = () => {
     <div className="w-111 px-8">
       <Autocomplete
         className="text-left"
-        id="searchBar"
         autoHighlight={true}
         clearOnEscape={true}
         autoComplete={true}
@@ -47,7 +46,7 @@ const Search: React.FC = () => {
           } else {
             const movies = await getAllMovies();
             const imgs = await getMovieImages();
-            dispatch({ type: "setMovies", payload: { movies: movies } });
+            dispatch({ type: "setMovies", payload: { movies } });
             dispatch({ type: "setImages", payload: { imgs } });
           }
         }}

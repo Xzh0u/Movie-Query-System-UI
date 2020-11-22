@@ -5,6 +5,7 @@ import { GetMoviesParams } from "utils/api";
 const initialMovieContext = {
   // rootRef: (undefined as unknown) as RefObject<HTMLDivElement>,
   movies: [] as MovieType[],
+  movieCount: 0,
   imgs: [] as ImageType[],
   action: "all",
   type: "",
@@ -24,6 +25,11 @@ const reducer = (state: MovieContextType, action: ActionType) => {
       console.log(tmp);
       return tmp;
     }
+    case "setMovieCount":
+      return {
+        ...state,
+        movieCount: action.payload.count,
+      };
     case "setAction":
       return {
         ...state,
@@ -61,6 +67,7 @@ const MovieProvider: React.FC = ({ children }) => {
 type ActionType =
   | { type: "test"; payload: { test: string } }
   | { type: "setMovies"; payload: { movies: MovieType[] } }
+  | { type: "setMovieCount"; payload: { count: number } }
   | { type: "setAction"; payload: { action: string } }
   | { type: "setActionType"; payload: { type: string } }
   | { type: "setImages"; payload: { imgs: ImageType[] } }

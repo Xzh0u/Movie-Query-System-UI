@@ -5,13 +5,15 @@ import React, { memo, useEffect, useState } from "react";
 export type InputSearchProps<T> = {
   fetchOptions: () => Promise<T[]>;
   value: T;
-  onChange: (v: T) => void;
-} & Partial<AutocompleteProps<unknown, undefined, undefined, undefined>>;
+  label?: string;
+  onChange: AutocompleteProps<string, undefined, undefined, boolean>['onChange'];
+} & Partial<AutocompleteProps<string, undefined, undefined, boolean>>;
 
 const InputSearch: React.FC<InputSearchProps<string>> = ({
   fetchOptions,
   value,
   onChange,
+  label = "搜索",
   ...rest
 }) => {
   const [options, setOptions] = useState<string[]>([]);
@@ -25,20 +27,20 @@ const InputSearch: React.FC<InputSearchProps<string>> = ({
 
   return (
     <Autocomplete
-      {...rest}
       value={value}
       onChange={onChange}
       options={options}
       renderInput={(params) => (
         <TextField
             {...params}
-            label="地域"
+            label={label}
             inputProps={{
               ...params.inputProps,
               autoComplete: "new-password", // disable autocomplete and autofill
             }}
           />
       )}
+      {...rest}
     />
   );
 };

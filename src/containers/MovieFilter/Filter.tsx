@@ -103,7 +103,7 @@ const Filter: React.FC<FilterProps> = ({
           />
         )}
       />
-      <InputSearch value={""} onChange={() => null} fetchOptions={async () => {
+      <InputSearch label={"语言"} value={""} onChange={() => null} fetchOptions={async () => {
         return getTypeList("language");
       }} />
       <div>剧情</div>
