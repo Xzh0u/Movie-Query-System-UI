@@ -1,11 +1,12 @@
+import { TextField } from "@material-ui/core";
 import Autocomplete, { AutocompleteProps } from "@material-ui/lab/Autocomplete";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 export type InputSearchProps<T> = {
   fetchOptions: () => Promise<T[]>;
   value: T;
   onChange: (v: T) => void;
-} & AutocompleteProps<unknown, undefined, undefined, undefined>;
+} & Partial<AutocompleteProps<unknown, undefined, undefined, undefined>>;
 
 const InputSearch: React.FC<InputSearchProps<string>> = ({
   fetchOptions,
@@ -28,8 +29,18 @@ const InputSearch: React.FC<InputSearchProps<string>> = ({
       value={value}
       onChange={onChange}
       options={options}
+      renderInput={(params) => (
+        <TextField
+            {...params}
+            label="地域"
+            inputProps={{
+              ...params.inputProps,
+              autoComplete: "new-password", // disable autocomplete and autofill
+            }}
+          />
+      )}
     />
   );
 };
 
-export default InputSearch;
+export default memo(InputSearch);

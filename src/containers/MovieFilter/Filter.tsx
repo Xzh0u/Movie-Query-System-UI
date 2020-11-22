@@ -1,11 +1,12 @@
 import { RadioButton } from "components/Button";
 import React from "react";
-import { GetMoviesParams } from "utils/api";
+import { GetMoviesParams, getTypeList } from "utils/api";
 import styled from "styled-components";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { countryToFlag } from "utils/flag";
 import countries from "constants/countries";
 import { TextField } from "@material-ui/core";
+import InputSearch from "components/InputSearch";
 
 const Label = styled.div.attrs({ className: "font-medium text-sm" })``;
 const RadioGroup = styled.div.attrs({
@@ -102,7 +103,9 @@ const Filter: React.FC<FilterProps> = ({
           />
         )}
       />
-
+      <InputSearch value={""} onChange={() => null} fetchOptions={async () => {
+        return getTypeList("language");
+      }} />
       <div>剧情</div>
       <div>导演</div>
       <div>演员</div>

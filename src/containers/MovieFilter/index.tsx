@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { movieContext } from "context/MovieProvider";
+import React, { useContext, useEffect } from "react";
 import { getMovies, GetMoviesParams } from "utils/api";
 import Filter from "./Filter";
 import Sorter from "./Sorter";
 
 const MovieFilter: React.FC = () => {
-  const [getMoviesParams, setGetMoviesParams] = useState<GetMoviesParams>({
-    sort: "date",
-  });
+  const { getMoviesParams, dispatch } = useContext(movieContext);
+
+  const mergeGetMoviesParams = (params: Partial<GetMoviesParams>) =>
+    dispatch({ type: "mergeGetMoviesParams", payload: { params } });
 
   useEffect(() => {
     (async () => {
-      const data = await getMovies(getMoviesParams);
-      console.log(data);
+      const movies = await getMovies(getMoviesParams);
+      dispatch({ type: "setMovies", payload: { movies } });
     })();
-  }, [getMoviesParams]);
-
-  const mergeGetMoviesParams = (params: Partial<GetMoviesParams>) =>
-    setGetMoviesParams({ ...getMoviesParams, ...params });
+  }, [getMoviesParams, dispatch]);
 
   return (
     <div className="px-8 py-8 space-y-4">

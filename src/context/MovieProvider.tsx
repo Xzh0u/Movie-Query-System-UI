@@ -1,5 +1,6 @@
 /* eslint-disable no-debugger */
 import React, { createContext, useReducer, Dispatch } from "react";
+import { GetMoviesParams } from "utils/api";
 
 const initialMovieContext = {
   // rootRef: (undefined as unknown) as RefObject<HTMLDivElement>,
@@ -7,6 +8,7 @@ const initialMovieContext = {
   imgs: [] as ImageType[],
   action: "all",
   type: "",
+  getMoviesParams: { sort: "date", limit: 10, offset: 0 } as GetMoviesParams,
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
 };
 
@@ -37,6 +39,11 @@ const reducer = (state: MovieContextType, action: ActionType) => {
         ...state,
         imgs: action.payload.imgs,
       };
+    case "mergeGetMoviesParams":
+      return {
+        ...state,
+        getMoviesParams: { ...state.getMoviesParams, ...action.payload.params },
+      };
     default:
       return state;
   }
@@ -56,7 +63,11 @@ type ActionType =
   | { type: "setMovies"; payload: { movies: MovieType[] } }
   | { type: "setAction"; payload: { action: string } }
   | { type: "setActionType"; payload: { type: string } }
-  | { type: "setImages"; payload: { imgs: ImageType[] } };
+  | { type: "setImages"; payload: { imgs: ImageType[] } }
+  | {
+      type: "mergeGetMoviesParams";
+      payload: { params: Partial<GetMoviesParams> };
+    };
 
 export interface MovieType {
   country: string;
