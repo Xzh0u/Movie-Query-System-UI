@@ -8,11 +8,14 @@ const MovieFilter: React.FC = () => {
   const { getMoviesParams, dispatch } = useContext(movieContext);
 
   const mergeGetMoviesParams = (params: Partial<GetMoviesParams>) =>
-    dispatch({ type: "mergeGetMoviesParams", payload: { params } });
+    dispatch({
+      type: "mergeGetMoviesParams",
+      payload: { params: { offset: 0, ...params } },
+    });
 
   useEffect(() => {
     (async () => {
-      const {movies, count} = await getMovies(getMoviesParams);
+      const { movies, count } = await getMovies(getMoviesParams);
       dispatch({ type: "setMovies", payload: { movies } });
       dispatch({ type: "setMovieCount", payload: { count } });
     })();

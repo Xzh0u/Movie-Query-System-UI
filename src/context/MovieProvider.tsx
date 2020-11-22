@@ -77,13 +77,13 @@ type ActionType =
     };
 
 export interface MovieType {
-  country: string;
+  country: string[];
   date: string;
-  director: string;
-  introduction: string;
+  director: string[];
+  introduction: string[];
   image_url: string;
   runtime: string;
-  language: string;
+  language: string[];
   link: {
     [K: string]: string;
   };
@@ -92,7 +92,8 @@ export interface MovieType {
   score: number;
   title: string;
   type: Array<string>;
-  adaptation: boolean;
+  adaptation: string;
+  view: number;
 }
 
 export interface ImageType {

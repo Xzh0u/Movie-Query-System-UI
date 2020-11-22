@@ -1,12 +1,9 @@
 import Header from "containers/Home/Header";
 import MovieFilter from "containers/MovieFilter";
-// import SideBar from "containers/Home/SideBarOld";
 import MovieList from "containers/MovieList";
 import React from "react";
 
 const MovieListPage: React.FC = () => {
-
-
   return (
     <div className="w-full h-full bg-gray-100">
       <Header />
