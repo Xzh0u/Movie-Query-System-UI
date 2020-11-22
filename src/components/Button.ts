@@ -2,9 +2,7 @@ import styled from "styled-components";
 import { Button as MButton, ButtonProps } from "@material-ui/core";
 import clsx from "clsx";
 
-const Button = styled(MButton).attrs<ButtonProps>({
-  className: "outline-none",
-})``;
+const Button = styled(MButton)``;
 
 export type RadioButtonProps = ButtonProps & { isSelected: boolean };
 

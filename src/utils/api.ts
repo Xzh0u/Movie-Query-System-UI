@@ -19,14 +19,14 @@ export type GetMoviesParams = {
   title?: string;
   sort?: SortType;
 
-  limit?: number;
-  offset?: number;
+  limit: number;
+  offset: number;
 };
 
 export async function getMovies(params: GetMoviesParams) {
   try {
     // FIXME: ip
-    const resp = await axios.get<MovieType[]>(
+    const resp = await axios.get<{ movies: MovieType[]; count: number }>(
       `${serverUrl}/movies`,
       {
         params,
@@ -36,16 +36,13 @@ export async function getMovies(params: GetMoviesParams) {
     return resp.data;
   } catch (e) {
     console.error(e);
-    return [];
+    return { movies: [], count: 0 };
   }
 }
 
-
 export async function getTypeList(type: keyof GetMoviesParams) {
   try {
-    const resp = await axios.get<string[]>(
-      `${serverUrl}/movies/type/${type}`
-    );
+    const resp = await axios.get<string[]>(`${serverUrl}/movies/type/${type}`);
 
     return resp.data;
   } catch (e) {

@@ -48,7 +48,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
     <StyledCard
       raised
       variant="outlined"
-      className="w-100 h-36 ml-8 mb-6 mb-2 flex"
+      className="w-100 h-36 mb-6 mb-2 flex"
       onClick={onClick}
     >
       <CardMedia
