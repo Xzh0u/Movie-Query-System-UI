@@ -32,6 +32,7 @@ const Search: React.FC = () => {
       }
     });
   };
+
   return (
     <div className="w-111 px-8">
       <Autocomplete

@@ -1,17 +1,17 @@
 /* eslint-disable no-debugger */
 import React, { useCallback, useContext, useEffect } from "react";
 import Header from "./Header";
-import SideBar from "./SideBar";
+import SideBar from "./SideBarOld";
 import InfoCard from "./../../components/InfoCard";
 import BackTop from "./../../components/BackTop";
 import { movieContext } from "./../../context/MovieProvider";
 import { getAllMovies } from "./../../utils/getAllMovies";
 import { getMovieImages } from "./../../utils/getMovieImages";
-import InfoPanel from "components/InfoPanelOld";
+// import InfoPanel from "components/InfoPanel";
 
 const Home: React.FC = () => {
   const { movies, dispatch } = useContext(movieContext);
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   const getAllMoviesRequest = useCallback(async () => {
     const _movies = await getAllMovies();
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
               <InfoCard movie={movie} />
             ))}
             <BackTop />
-            <InfoPanel openPanel={open} setOpenPanel={setOpen} />
+            {/* <InfoPanel openPanel={open} setOpenPanel={setOpen} /> */}
           </div>
         </div>
       </div>

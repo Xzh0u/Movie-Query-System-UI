@@ -29,7 +29,7 @@ const MovieList: React.FC = () => {
   }, [getAllMoviesRequest]);
 
   return (
-    <div className="flex flex-col overflow-y-auto">
+    <div className="flex flex-col mt-8">
       {/* FIXME: remove slice; split pages or load by require */}
       <InfoPanel
         movie={selectedMovie}
