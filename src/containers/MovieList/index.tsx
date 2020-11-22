@@ -3,6 +3,7 @@ import InfoCard from "components/InfoCard";
 import InfoPanel from "components/InfoPanel";
 import { movieContext, MovieType } from "context/MovieProvider";
 import React, { memo, useContext, useState } from "react";
+import Empty from "./Empty";
 
 const MovieList: React.FC = () => {
   const { movies, getMoviesParams, movieCount, dispatch } = useContext(
@@ -18,12 +19,10 @@ const MovieList: React.FC = () => {
     });
 
   if (!movies.length) {
-    return null;
+    return <Empty />;
   }
 
   const pageCount = Math.floor(movieCount / getMoviesParams.limit) + 1;
-  // console.log(tmp)
-  // const pageCount = 1;
 
   const page = getMoviesParams.offset / getMoviesParams.limit + 1;
 
