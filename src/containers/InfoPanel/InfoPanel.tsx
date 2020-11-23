@@ -2,18 +2,18 @@ import {
   Button,
   Dialog,
   DialogTitle,
-  // Typography,
   DialogActions,
   Tooltip,
   IconButton,
+  CardMedia,
 } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { movieContext, MovieType } from "context/MovieProvider";
+import { MovieType } from "context/MovieProvider";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import Divider from "@material-ui/core/Divider";
-// import MuiDialogActions from "@material-ui/core/DialogActions";
-import React, { useContext, useMemo } from "react";
+import React from "react";
+import { getImgUrl } from "utils/img";
 
 export type InfoPanelProps = {
   movie: MovieType | null;
@@ -22,22 +22,7 @@ export type InfoPanelProps = {
 };
 
 const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
-  const { imgs } = useContext(movieContext);
-  const imageUrls = useMemo(() => {
-    let urls = "";
-    if (!movie) {
-      return null;
-    }
-    // eslint-disable-next-line
-    imgs.map((images) => {
-      if (images.pic_names === movie.image_url.split("/").slice(-1)[0]) {
-        urls = images.url;
-      }
-    });
-    return urls;
-  }, [imgs, movie]);
-
-  if (imageUrls == null || movie == null) {
+  if (!movie) {
     return null;
   }
 
@@ -52,7 +37,13 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
       <DialogTitle id="alert-dialog-title">{movie.title}</DialogTitle>
       <MuiDialogContent dividers>
         <div className="flex">
-          <img src={imageUrls} alt="movie" className="w-30 h-48 mr-6 my-4" />
+          <CardMedia
+            className="w-32 h-32 rounded-md mr-4 my-4"
+            component="img"
+            alt="movie-picture"
+            image={getImgUrl(movie.image_url)}
+          />
+
           <div className="w-80 my-4 mx-4 text-gray-600">
             <div>导演: {movie.director}</div>
             <div>

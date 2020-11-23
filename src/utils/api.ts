@@ -2,7 +2,7 @@ import axios from "axios";
 import { MovieType } from "context/MovieProvider";
 // import { MovieType } from "context/MovieProvider";
 
-const serverUrl = "http://127.0.0.1:5000";
+export const serverUrl = "http://127.0.0.1:5000";
 
 export type SortType = "view" | "date";
 

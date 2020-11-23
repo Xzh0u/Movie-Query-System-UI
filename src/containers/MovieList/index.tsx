@@ -1,6 +1,6 @@
 import { Pagination, Skeleton } from "@material-ui/lab";
-import InfoCard, { StyledCard } from "components/InfoCard";
-import InfoPanel from "components/InfoPanel";
+import InfoCard, { StyledCard } from "containers/InfoPanel/InfoCard";
+import InfoPanel from "containers/InfoPanel/InfoPanel";
 import { movieContext, MovieType } from "context/MovieProvider";
 import React, { memo, useContext, useState } from "react";
 import Empty from "./Empty";
@@ -26,10 +26,10 @@ const MovieList: React.FC = () => {
             key={idx}
             raised
             variant="outlined"
-            className="w-100 h-36 flex items-center"
+            className="w-111 flex items-center"
           >
-            <Skeleton variant="rect" className="w-24 h-24 m-4"></Skeleton>
-            <div className="font-sm w-80 text-gray-600 space-y-2">
+            <Skeleton animation="wave" variant="rect" className="w-32 h-32 m-2 rounded-md"></Skeleton>
+            <div className="ml-2 font-sm w-80 text-gray-600 space-y-2">
               <Skeleton variant="rect" className="w-32"></Skeleton>
               <Skeleton variant="rect" className="w-48"></Skeleton>
               <Skeleton variant="rect" className="w-64"></Skeleton>
