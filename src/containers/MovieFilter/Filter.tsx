@@ -2,10 +2,10 @@ import { RadioButton } from "components/Button";
 import React from "react";
 import { GetMoviesParams, getTypeList } from "utils/api";
 import styled from "styled-components";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { countryToFlag } from "utils/flag";
-import countries from "constants/countries";
-import { TextField } from "@material-ui/core";
+// import Autocomplete from "@material-ui/lab/Autocomplete";
+// import { countryToFlag } from "utils/flag";
+// import countries from "constants/countries";
+// import { TextField } from "@material-ui/core";
 import InputSearch from "components/InputSearch";
 
 const Label = styled.div.attrs({ className: "font-medium text-sm" })``;
@@ -50,7 +50,7 @@ const Filter: React.FC<FilterProps> = ({
     );
   };
 
-  const country = countries.find((x) => x.label === getMoviesParams.country);
+  // const country = countries.find((x) => x.label === getMoviesParams.country);
 
   return (
     <div className="flex flex-col space-y-2">
@@ -76,7 +76,7 @@ const Filter: React.FC<FilterProps> = ({
         </RadioGroup>
       </div>
 
-      <Autocomplete
+      {/* <Autocomplete
         value={country}
         onChange={(_, val) =>
           mergeGetMoviesParams({
@@ -102,14 +102,47 @@ const Filter: React.FC<FilterProps> = ({
             }}
           />
         )}
+      /> */}
+      <InputSearch
+        label={"国家/地区"}
+        value={""}
+        onChange={() => null}
+        fetchOptions={async () => {
+          return getTypeList("country");
+        }}
       />
-      <InputSearch label={"语言"} value={""} onChange={() => null} fetchOptions={async () => {
-        return getTypeList("language");
-      }} />
-      <div>剧情</div>
-      <div>导演</div>
-      <div>演员</div>
-      <div>语言</div>
+      <InputSearch
+        label={"语言"}
+        value={""}
+        onChange={() => null}
+        fetchOptions={async () => {
+          return getTypeList("language");
+        }}
+      />
+      <InputSearch
+        label={"剧情"}
+        value={""}
+        onChange={() => null}
+        fetchOptions={async () => {
+          return getTypeList("type");
+        }}
+      />
+      <InputSearch
+        label={"导演"}
+        value={""}
+        onChange={() => null}
+        fetchOptions={async () => {
+          return getTypeList("director");
+        }}
+      />
+      <InputSearch
+        label={"演员"}
+        value={""}
+        onChange={() => null}
+        fetchOptions={async () => {
+          return getTypeList("major");
+        }}
+      />
     </div>
   );
 };

@@ -28,6 +28,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
     if (!movie) {
       return null;
     }
+    // eslint-disable-next-line
     imgs.map((images) => {
       if (images.pic_names === movie.image_url.split("/").slice(-1)[0]) {
         urls = images.url;

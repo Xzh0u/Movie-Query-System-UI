@@ -1,4 +1,4 @@
-import Header from "containers/Home/Header";
+import Header from "containers/Header";
 import MovieFilter from "containers/MovieFilter";
 import MovieList from "containers/MovieList";
 import React from "react";
