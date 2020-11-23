@@ -6,7 +6,7 @@ import { CardMedia, Card } from "@material-ui/core";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { movieContext, MovieType } from "../context/MovieProvider";
-const StyledCard = styled(Card)`
+export const StyledCard = styled(Card)`
   padding: 1em;
   border: 1px dashed transparent;
   background: linear-gradient(white, white) padding-box,
@@ -48,11 +48,11 @@ const InfoCard: React.FC<InfoCardProps> = ({
     <StyledCard
       raised
       variant="outlined"
-      className="w-100 h-36 mb-6 mb-2 flex"
+      className="w-100 h-36 flex items-center"
       onClick={onClick}
     >
       <CardMedia
-        className="pr-10 w-30"
+        className="w-32 h-32 m-4"
         component="img"
         alt="movie-picture"
         image={imageUrls}

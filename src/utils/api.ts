@@ -636,3 +636,26 @@ export async function getTypeList(type: keyof GetMoviesParams) {
     return [];
   }
 }
+
+const mockComments = [
+  {
+    author: "小🐷",
+    ip: "235.234.123.25",
+    content: "了解清楚小洲真美到底是一种怎么样的存在，是解决一切问题的关键。 一般来说， 小洲真美因何而发生？ 在这种困难的抉择下，本人思来想去，寝食难安。 小洲真美，到底应该如何实现。"
+  },
+  {
+    author: "小🐷",
+    ip: "235.234.123.25",
+    content: "了解清楚小洲真美到底是一种怎么样的存在，是解决一切问题的关键。 一般来说， 小洲真美因何而发生？ 在这种困难的抉择下，本人思来想去，寝食难安。 小洲真美，到底应该如何实现。"
+  }
+]
+
+export async function getComment(movieId: number) {
+  try {
+    console.log(movieId);
+    return mockComments;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}

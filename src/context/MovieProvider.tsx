@@ -10,6 +10,8 @@ const initialMovieContext = {
   action: "all",
   type: "",
   getMoviesParams: { sort: "date", limit: 10, offset: 0 } as GetMoviesParams,
+  pending: false,
+  error: null as any,
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
 };
 
@@ -29,6 +31,16 @@ const reducer = (state: MovieContextType, action: ActionType) => {
       return {
         ...state,
         movieCount: action.payload.count,
+      };
+    case "setError":
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+    case "setPending":
+      return {
+        ...state,
+        pending: action.payload.pending,
       };
     case "setAction":
       return {
@@ -67,6 +79,8 @@ const MovieProvider: React.FC = ({ children }) => {
 type ActionType =
   | { type: "test"; payload: { test: string } }
   | { type: "setMovies"; payload: { movies: MovieType[] } }
+  | { type: "setPending"; payload: { pending: boolean } }
+  | { type: "setError"; payload: { error: any } }
   | { type: "setMovieCount"; payload: { count: number } }
   | { type: "setAction"; payload: { action: string } }
   | { type: "setActionType"; payload: { type: string } }
