@@ -1,6 +1,5 @@
 import axios from "axios";
 import { MovieType } from "context/MovieProvider";
-// import { MovieType } from "context/MovieProvider";
 
 export const serverUrl = "http://127.0.0.1:5000";
 
@@ -24,8 +23,16 @@ export type GetMoviesParams = {
   offset: number;
 };
 
+export type CommentType = {
+  author: string;
+  ip: string;
+  content: string;
+  createdAt: number;
+};
+
 export async function getMovies(params: GetMoviesParams) {
   try {
+    // FIXME: ip
     const resp = await axios.get<{ movies: MovieType[]; count: number }>(
       `${serverUrl}/movies`,
       {
@@ -51,27 +58,34 @@ export async function getTypeList(type: keyof GetMoviesParams) {
   }
 }
 
-const mockComments = [
-  {
-    author: "小🐷",
-    ip: "235.234.123.25",
-    content:
-      "了解清楚小洲真美到底是一种怎么样的存在，是解决一切问题的关键。 一般来说， 小洲真美因何而发生？ 在这种困难的抉择下，本人思来想去，寝食难安。 小洲真美，到底应该如何实现。",
-  },
-  {
-    author: "小🐷",
-    ip: "235.234.123.25",
-    content:
-      "了解清楚小洲真美到底是一种怎么样的存在，是解决一切问题的关键。 一般来说， 小洲真美因何而发生？ 在这种困难的抉择下，本人思来想去，寝食难安。 小洲真美，到底应该如何实现。",
-  },
-];
-
-export async function getComment(movieId: number) {
+export async function getComments(movieId: number) {
   try {
-    console.log(movieId);
-    return mockComments;
+    const resp = await axios.get<CommentType[]>(
+      `${serverUrl}/movies/comments/${movieId}`
+    );
+    return resp.data;
   } catch (e) {
     console.error(e);
     return [];
+  }
+}
+
+export async function addComment({
+  movieId,
+  author,
+  content,
+}: {
+  movieId: number;
+  author: string;
+  content: string;
+}) {
+  try {
+    const resp = await axios.get<string>(
+      `${serverUrl}/movies/comments/${movieId}/${author}/${content}`
+    );
+    return resp.data;
+  } catch (e) {
+    console.error(e);
+    return false;
   }
 }
