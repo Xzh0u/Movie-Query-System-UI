@@ -5,10 +5,10 @@ import React from "react";
 
 const MovieListPage: React.FC = () => {
   return (
-    <div className="w-full h-full bg-gray-100">
+    <div className="w-full h-full">
       <Header />
       <div className="flex h-full" style={{ paddingTop: 68 }}>
-        <div className="bg-red-100 w-76 h-full fixed">
+        <div className="w-76 h-full fixed">
           <MovieFilter />
         </div>
         <div className="flex-1 ml-76 overflow-y-auto">

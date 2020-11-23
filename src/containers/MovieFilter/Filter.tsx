@@ -1,5 +1,5 @@
 import { RadioButton } from "components/Button";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { GetMoviesParams, getTypeList } from "utils/api";
 import styled from "styled-components";
 // import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -7,6 +7,7 @@ import styled from "styled-components";
 // import countries from "constants/countries";
 // import { TextField } from "@material-ui/core";
 import InputSearch from "components/InputSearch";
+import { movieContext } from "context/MovieProvider";
 
 const Label = styled.div.attrs({ className: "font-medium text-sm" })``;
 const RadioGroup = styled.div.attrs({
@@ -50,6 +51,86 @@ const Filter: React.FC<FilterProps> = ({
     );
   };
 
+  const [countryVal, setCountryVal] = useState<string | undefined>(undefined);
+  const [languageVal, setLanguageVal] = useState<string | undefined>(undefined);
+  const [typeVal, setTypeVal] = useState<string | undefined>(undefined);
+  const [directorVal, setDirectorVal] = useState<string | undefined>(undefined);
+  const [majorVal, setMajorVal] = useState<string | undefined>(undefined);
+  const { dispatch } = useContext(movieContext);
+  const handleCountryVal = (
+    event: any,
+    val: string | null,
+    reason: any,
+    details: any
+  ) => {
+    console.log(event, reason, details);
+    const nextSearchVal = val ?? undefined;
+    setCountryVal(nextSearchVal);
+    dispatch({
+      type: "mergeGetMoviesParams",
+      payload: { params: { country: nextSearchVal, offset: 0 } },
+    });
+  };
+
+  const handleTypeVal = (
+    event: any,
+    val: string | null,
+    reason: any,
+    details: any
+  ) => {
+    console.log(event, reason, details);
+    const nextSearchVal = val ?? undefined;
+    setTypeVal(nextSearchVal);
+    dispatch({
+      type: "mergeGetMoviesParams",
+      payload: { params: { type: nextSearchVal, offset: 0 } },
+    });
+  };
+
+  const handleDirectorVal = (
+    event: any,
+    val: string | null,
+    reason: any,
+    details: any
+  ) => {
+    console.log(event, reason, details);
+    const nextSearchVal = val ?? undefined;
+    setDirectorVal(nextSearchVal);
+    dispatch({
+      type: "mergeGetMoviesParams",
+      payload: { params: { director: nextSearchVal, offset: 0 } },
+    });
+  };
+
+  const handleLanguageVal = (
+    event: any,
+    val: string | null,
+    reason: any,
+    details: any
+  ) => {
+    console.log(event, reason, details);
+    const nextSearchVal = val ?? undefined;
+    setLanguageVal(nextSearchVal);
+    dispatch({
+      type: "mergeGetMoviesParams",
+      payload: { params: { language: nextSearchVal, offset: 0 } },
+    });
+  };
+
+  const handleMajorVal = (
+    event: any,
+    val: string | null,
+    reason: any,
+    details: any
+  ) => {
+    console.log(event, reason, details);
+    const nextSearchVal = val ?? undefined;
+    setMajorVal(nextSearchVal);
+    dispatch({
+      type: "mergeGetMoviesParams",
+      payload: { params: { major: nextSearchVal, offset: 0 } },
+    });
+  };
   // const country = countries.find((x) => x.label === getMoviesParams.country);
 
   return (
@@ -105,40 +186,40 @@ const Filter: React.FC<FilterProps> = ({
       /> */}
       <InputSearch
         label={"国家/地区"}
-        value={""}
-        onChange={() => null}
+        value={countryVal || ""}
+        onChange={handleCountryVal}
         fetchOptions={async () => {
           return getTypeList("country");
         }}
       />
       <InputSearch
         label={"语言"}
-        value={""}
-        onChange={() => null}
+        value={languageVal || ""}
+        onChange={handleLanguageVal}
         fetchOptions={async () => {
           return getTypeList("language");
         }}
       />
       <InputSearch
         label={"剧情"}
-        value={""}
-        onChange={() => null}
+        value={typeVal || ""}
+        onChange={handleTypeVal}
         fetchOptions={async () => {
           return getTypeList("type");
         }}
       />
       <InputSearch
         label={"导演"}
-        value={""}
-        onChange={() => null}
+        value={directorVal || ""}
+        onChange={handleDirectorVal}
         fetchOptions={async () => {
           return getTypeList("director");
         }}
       />
       <InputSearch
         label={"演员"}
-        value={""}
-        onChange={() => null}
+        value={majorVal || ""}
+        onChange={handleMajorVal}
         fetchOptions={async () => {
           return getTypeList("major");
         }}
