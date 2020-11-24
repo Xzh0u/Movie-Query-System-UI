@@ -28,7 +28,11 @@ const MovieList: React.FC = () => {
             variant="outlined"
             className="w-111 flex items-center"
           >
-            <Skeleton animation="wave" variant="rect" className="w-32 h-32 m-2 rounded-md"></Skeleton>
+            <Skeleton
+              animation="wave"
+              variant="rect"
+              className="w-32 h-32 m-2 rounded-md"
+            ></Skeleton>
             <div className="ml-2 font-sm w-80 text-gray-600 space-y-2">
               <Skeleton variant="rect" className="w-32"></Skeleton>
               <Skeleton variant="rect" className="w-48"></Skeleton>

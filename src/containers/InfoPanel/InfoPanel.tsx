@@ -13,6 +13,7 @@ import { getImgUrl } from "utils/img";
 import styled from "styled-components";
 import { CommentType, getComments } from "utils/api";
 import Comments from "../../components/Comments";
+import { addClick } from "utils/api";
 
 const Label = styled.label.attrs({ className: "font-semibold text-base" })``;
 
@@ -40,6 +41,13 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
 
     refreshComments();
   }, [isOpen, refreshComments]);
+
+  const sendClick = async () => {
+    if (!movie) {
+      return;
+    }
+    await addClick(movie.rank);
+  };
 
   if (!movie) {
     return null;
@@ -105,7 +113,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
                   href={
                     movie.link["爱奇艺视频"] ? movie.link["爱奇艺视频"] : ""
                   }
-                  className="hover:text-gray-700"
+                  className="hover:text-gray-700 text-gray-500 underline"
                 >
                   爱奇艺视频
                 </a>
@@ -113,7 +121,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
               {movie.link["腾讯视频"] && (
                 <a
                   href={movie.link["腾讯视频"] ? movie.link["腾讯视频"] : ""}
-                  className="hover:text-gray-700"
+                  className="hover:text-gray-700 text-gray-500 underline"
                 >
                   腾讯视频
                 </a>
@@ -121,7 +129,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
               {movie.link["优酷视频"] && (
                 <a
                   href={movie.link["优酷视频"] ? movie.link["优酷视频"] : ""}
-                  className="hover:text-gray-700"
+                  className="hover:text-gray-700 text-gray-500 underline"
                 >
                   优酷视频
                 </a>
@@ -129,7 +137,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
               {movie.link["哔哩哔哩"] && (
                 <a
                   href={movie.link["哔哩哔哩"] ? movie.link["哔哩哔哩"] : ""}
-                  className="hover:text-gray-700"
+                  className="hover:text-gray-700 text-gray-500 underline"
                 >
                   哔哩哔哩
                 </a>
@@ -156,7 +164,14 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
         </div>
       </MuiDialogContent>
       <DialogActions>
-        <Button autoFocus onClick={onClose} color="primary">
+        <Button
+          autoFocus
+          onClick={() => {
+            onClose();
+            sendClick();
+          }}
+          color="primary"
+        >
           Close
         </Button>
       </DialogActions>

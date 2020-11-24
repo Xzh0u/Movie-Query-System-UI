@@ -70,6 +70,16 @@ export async function getComments(movieId: number) {
   }
 }
 
+export async function addClick(movieId: number) {
+  try {
+    const resp = await axios.post(`${serverUrl}/movies/click/${movieId}`);
+    return resp.data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}
+
 export async function addComment({
   movieId,
   author,
