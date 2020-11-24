@@ -44,7 +44,7 @@ const Header: React.FC = () => {
         Movie Awesome
       </div>
       {/* <Search /> */}
-      <div className="ml-20 w-111">
+      <div className="ml-18 w-111">
         <InputSearch
           value={searchVal || ""}
           className="text-left"

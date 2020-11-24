@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Helmet>
-        <title>Movie Query System -- QueryX</title>
+        <title>Movie Awesome - Movie Query System | Xzh0u</title>
       </Helmet>
       <Switch>
         <Route

@@ -48,7 +48,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
         image={getImgUrl(image_url)}
       />
       <div className="ml-2 font-sm w-80 text-gray-600">
-        <p className="font-bold">{title}</p>
+        <div className="font-bold hover:text-blue-500">{title}</div>
         <p>
           <label className="font-medium text-xs">导演:</label>{" "}
           {director.map((x: any) => (

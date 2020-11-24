@@ -184,6 +184,9 @@ const Filter: React.FC<FilterProps> = ({
           />
         )}
       /> */}
+      <div className="text-gray-500 ml-4">
+        ----------- 按条件筛选 -----------
+      </div>
       <InputSearch
         label={"国家/地区"}
         value={countryVal || ""}
