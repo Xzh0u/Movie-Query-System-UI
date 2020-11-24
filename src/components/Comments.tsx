@@ -26,17 +26,17 @@ const StyledTextFieldWrapper = styled.div`
 const Comment: React.FC<CommentProps> = ({ comment }) => {
   const time = new Date(comment.createdAt * 1000);
   return (
-    <div className="flex flex-col py-2 text-sm border-t border-dashed text-gray-600">
+    <div className="flex flex-col py-2 text-sm border-t border-dashed text-gray-600 px-2">
       <div className="space-x-2">
         <Tooltip title={`IP: ${comment.ip}`} placement="top">
           <span>{comment.author}</span>
         </Tooltip>
         <Tooltip title={format(time, "yyyy-MM-dd HH:mm:ss")} placement="top">
-        <span className="text-xs text-gray-500">
-          {formatRelative(time, new Date(), {
-            locale: zhCN,
-          })}
-        </span>
+          <span className="text-xs text-gray-500">
+            {formatRelative(time, new Date(), {
+              locale: zhCN,
+            })}
+          </span>
         </Tooltip>
       </div>
       <div>{comment.content}</div>
@@ -46,33 +46,43 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
 
 const authorPlaceHolder = "匿名";
 
-const Comments: React.FC<CommentsProps> = ({ comments, movieId, refreshComments }) => {
+const Comments: React.FC<CommentsProps> = ({
+  comments,
+  movieId,
+  refreshComments,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
 
   const handleAuthorChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAuthor(e.target.value);
-  }
+  };
 
   const handleChangeEvent = (e: ChangeEvent<HTMLTextAreaElement>) =>
     setContent(e.target.value);
 
-    const handleAddComment = async () => {
-      if (!content) {
-        return;
-      }
-
-      const resp = await addComment({movieId, author: author ?? authorPlaceHolder, content });
-      console.log('resp', resp);
-      setIsEditing(false);
-      setContent('');
-      refreshComments();
+  const handleAddComment = async () => {
+    if (!content) {
+      return;
     }
+
+    const resp = await addComment({
+      movieId,
+      author: author ? author : authorPlaceHolder,
+      content,
+    });
+    console.log("resp", resp);
+    setIsEditing(false);
+    setContent("");
+    refreshComments();
+  };
 
   let renderComments;
   if (!comments.length) {
-    renderComments = () => <div>暂无评论</div>;
+    renderComments = () => (
+      <div className="px-2 text-gray-500">暂无评论...</div>
+    );
   } else {
     renderComments = () =>
       comments.map((comment, idx) => <Comment key={idx} comment={comment} />);
@@ -81,11 +91,19 @@ const Comments: React.FC<CommentsProps> = ({ comments, movieId, refreshComments 
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center p-2">
-        <div className="flex-1 text-l text-gray-600 ml-4">电影短评</div>
+        <div className="flex-1 text-l text-gray-600 ml-4 mt-2">电影短评</div>
         {isEditing ? (
           <div className="space-x-2">
-            <TextField className="w-16" value={author} placeholder={authorPlaceHolder} onChange={handleAuthorChange} />
-            <Button className="font-bold text-white bg-blue-400 hover:bg-blue-300" onClick={handleAddComment}>
+            <TextField
+              className="w-16 mt-1"
+              value={author}
+              placeholder={authorPlaceHolder}
+              onChange={handleAuthorChange}
+            />
+            <Button
+              className="font-bold text-white bg-blue-400 hover:bg-blue-300"
+              onClick={handleAddComment}
+            >
               评论
             </Button>
             <Button onClick={() => setIsEditing(!isEditing)}>返回</Button>
@@ -105,7 +123,7 @@ const Comments: React.FC<CommentsProps> = ({ comments, movieId, refreshComments 
       <StyledTextFieldWrapper className="flex-1 overflow-y-auto px-4">
         {isEditing ? (
           <TextField
-            className="w-full h-full py-2"
+            className="w-full h-full py-2 px-2"
             multiline
             placeholder="编辑评论"
             value={content}

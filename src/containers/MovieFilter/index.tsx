@@ -24,7 +24,7 @@ const MovieFilter: React.FC = () => {
   }, [getMoviesParams, dispatch]);
 
   return (
-    <div className="px-8 py-8 space-y-4">
+    <div className="pl-16 py-8 space-y-4 ">
       <Sorter
         sortType={getMoviesParams.sort}
         setSortType={mergeGetMoviesParams}

@@ -74,7 +74,9 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
           <div className="w-80 my-4 mx-4 text-gray-600">
             <div>
               <Label>导演: </Label>
-              {movie.director}
+              {movie.director.map((x: any) => (
+                <span className="mx-1">{x}</span>
+              ))}
             </div>
             <div>
               <Label>主演: </Label>
@@ -84,15 +86,21 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
             </div>
             <div>
               <Label>类型: </Label>
-              {movie.type}
+              {movie.type.map((x: any) => (
+                <span className="mx-1">{x}</span>
+              ))}
             </div>
             <div>
               <Label>制片国家/地区: </Label>
-              {movie.country}
+              {movie.country.map((x: any) => (
+                <span className="mx-1">{x}</span>
+              ))}
             </div>
             <div>
               <Label>语言: </Label>
-              {movie.language}
+              {movie.language.map((x: any) => (
+                <span className="mx-1">{x}</span>
+              ))}
             </div>
             <div>
               <Label>上映日期: </Label>
@@ -150,8 +158,10 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
                 : "无"}
             </div>
             <div>
-              <Label>简介: </Label>
-              {movie.introduction}
+              <Label>内容简介: </Label>
+              {movie.introduction.map((x: any) => (
+                <p className="mx-1">{x}</p>
+              ))}
             </div>
           </div>
           <div className="w-76 h-78 my-4 mx-8 rounded-lg bg-gray-100">
@@ -172,7 +182,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
           }}
           color="primary"
         >
-          Close
+          返回
         </Button>
       </DialogActions>
     </Dialog>

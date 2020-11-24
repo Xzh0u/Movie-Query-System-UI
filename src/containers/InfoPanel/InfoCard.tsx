@@ -34,7 +34,6 @@ const InfoCard: React.FC<InfoCardProps> = ({
   movie: { country, director, majors, date, type, title, score, image_url },
   onClick,
 }) => {
-
   return (
     <StyledCard
       raised
@@ -50,20 +49,37 @@ const InfoCard: React.FC<InfoCardProps> = ({
       />
       <div className="ml-2 font-sm w-80 text-gray-600">
         <p className="font-bold">{title}</p>
-        <p><label className="font-medium text-xs">导演:</label> {director}</p>
-        
+        <p>
+          <label className="font-medium text-xs">导演:</label>{" "}
+          {director.map((x: any) => (
+            <span className="mx-1">{x}</span>
+          ))}
+        </p>
+
         <p className="truncate ...">
           <label className="font-medium text-xs">主演: </label>
           {majors.map((x: any) => (
             <span className="mx-1">{x}</span>
           ))}
         </p>
-        <p><label className="font-medium text-xs">制片国家/地区:</label> {country}</p>
+        <p>
+          <label className="font-medium text-xs">制片国家/地区:</label>{" "}
+          {country.map((x: any) => (
+            <span className="mx-1">{x}</span>
+          ))}
+        </p>
         {/* <p>语言: {information[4]}</p> */}
-        <p><label className="font-medium text-xs">上映日期:</label> {date}</p>
-        <p><label className="font-medium text-xs">类型:</label> {type}</p>
+        <p>
+          <label className="font-medium text-xs">上映日期:</label> {date}
+        </p>
+        <p>
+          <label className="font-medium text-xs">类型:</label>{" "}
+          {type.map((x: any) => (
+            <span className="mx-1">{x}</span>
+          ))}
+        </p>
       </div>
-      <div className="flex relative top-0">
+      <div className="flex relative top-0 mb-28 ml-6">
         <StyledFontAwesomeIcon
           className="ml-16"
           icon={faStar}
