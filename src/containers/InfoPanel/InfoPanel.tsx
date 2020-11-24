@@ -100,7 +100,46 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
             </div>
             <div>
               <Label>在线观看链接: </Label>
-              {movie.link["爱奇艺"] ? movie.link["爱奇艺"] : "无"}
+              {movie.link["爱奇艺视频"] && (
+                <a
+                  href={
+                    movie.link["爱奇艺视频"] ? movie.link["爱奇艺视频"] : ""
+                  }
+                  className="hover:text-gray-700"
+                >
+                  爱奇艺视频
+                </a>
+              )}{" "}
+              {movie.link["腾讯视频"] && (
+                <a
+                  href={movie.link["腾讯视频"] ? movie.link["腾讯视频"] : ""}
+                  className="hover:text-gray-700"
+                >
+                  腾讯视频
+                </a>
+              )}{" "}
+              {movie.link["优酷视频"] && (
+                <a
+                  href={movie.link["优酷视频"] ? movie.link["优酷视频"] : ""}
+                  className="hover:text-gray-700"
+                >
+                  优酷视频
+                </a>
+              )}{" "}
+              {movie.link["哔哩哔哩"] && (
+                <a
+                  href={movie.link["哔哩哔哩"] ? movie.link["哔哩哔哩"] : ""}
+                  className="hover:text-gray-700"
+                >
+                  哔哩哔哩
+                </a>
+              )}
+              {movie.link["爱奇艺视频"] ||
+              movie.link["优酷视频"] ||
+              movie.link["腾讯视频"] ||
+              movie.link["哔哩哔哩"]
+                ? ""
+                : "无"}
             </div>
             <div>
               <Label>简介: </Label>
@@ -108,7 +147,11 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ movie, isOpen, onClose }) => {
             </div>
           </div>
           <div className="w-76 h-78 my-4 mx-8 rounded-lg bg-gray-100">
-            <Comments comments={comments} movieId={movie.rank} refreshComments={refreshComments} />
+            <Comments
+              comments={comments}
+              movieId={movie.rank}
+              refreshComments={refreshComments}
+            />
           </div>
         </div>
       </MuiDialogContent>
