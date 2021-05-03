@@ -68,7 +68,6 @@ const InfoCard: React.FC<InfoCardProps> = ({
             <span className="mx-1">{x}</span>
           ))}
         </p>
-        {/* <p>语言: {information[4]}</p> */}
         <p>
           <label className="font-medium text-xs">上映日期:</label> {date}
         </p>
